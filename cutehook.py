@@ -26,7 +26,7 @@ def main(webhook, name, delay, amount, message, hookDeleter):
             print()
         time.sleep(float(delay))
         counter += 1
-    if hookDeleter == "Y":
+    if hookDeleter.lower() == "y":
         requests.delete(webhook)
         print(f'{colorama.Fore.MAGENTA}webhook deleted')
     print(f'{colorama.Fore.GREEN}done...')
@@ -53,7 +53,7 @@ def initialize():
         delay = float(delay)
     except ValueError:
         _exit()
-    if not check_hook(webhook) or (not amount.isdigit() and amount != "inf") or (hookDeleter != "Y" and hookDeleter != "N"):
+    if not check_hook(webhook) or (not amount.isdigit() and amount != "inf") or (hookDeleter.lower() != "y" and hookDeleter.lower() != "n"):
         _exit()
     else:
         main(webhook, name, delay, amount, message, hookDeleter)
