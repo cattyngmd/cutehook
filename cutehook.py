@@ -1,7 +1,8 @@
-import colorama
 import os
-import requests
 import time
+
+import colorama
+import requests
 
 
 def _exit():
@@ -66,7 +67,7 @@ def initialize():
 
 
 if __name__ == '__main__':
-    os.system('cls' if os.name == "nt" else "clear")
     os.system('title cutehook on top LOL')
+    os.system('cls' if os.name == "nt" else "clear")
     colorama.init()
     initialize()
