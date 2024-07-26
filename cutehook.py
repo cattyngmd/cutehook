@@ -1,4 +1,7 @@
-import requests, colorama, time, os
+import colorama
+import os
+import requests
+import time
 
 
 def _exit():
@@ -17,7 +20,8 @@ def main(webhook, name, delay, amount, message, hookDeleter):
     counter = 0
     while True if amount == "inf" else counter < int(amount):
         try:
-            data = requests.post(webhook, json={"content": str(message), "name": str(name), "avatar_url": "https://i.imgur.com/lk79Hlc.jpeg"})
+            data = requests.post(webhook, json={"content": str(message), "name": str(name),
+                                                "avatar_url": "https://i.imgur.com/lk79Hlc.jpeg"})
             if data.status_code == 204:
                 print(f"{colorama.Back.MAGENTA} {colorama.Fore.WHITE}[+] Sent{colorama.Back.RESET}")
             else:
@@ -53,7 +57,8 @@ def initialize():
         delay = float(delay)
     except ValueError:
         _exit()
-    if not check_hook(webhook) or (not amount.isdigit() and amount != "inf") or (hookDeleter.lower() != "y" and hookDeleter.lower() != "n"):
+    if not check_hook(webhook) or (not amount.isdigit() and amount != "inf") or (
+            hookDeleter.lower() != "y" and hookDeleter.lower() != "n"):
         _exit()
     else:
         main(webhook, name, delay, amount, message, hookDeleter)
@@ -61,7 +66,7 @@ def initialize():
 
 
 if __name__ == '__main__':
-    os.system('cls')
+    os.system('cls' if os.name == "nt" else "clear")
     os.system('title cutehook on top LOL')
     colorama.init()
     initialize()
